@@ -65,7 +65,7 @@ function Sidebar({ role, page, setPage, className = '' }) {
           </div>
           <div>
             <div className="text-sm font-bold leading-tight tracking-[-0.02em] text-slate-900">ПРОкадры</div>
-            <div className="text-[11px] leading-tight text-slate-500">ЗаказРФ · recruiting workspace</div>
+            <div className="text-[11px] leading-tight text-slate-500">ЗаказРФ · рабочее пространство подбора</div>
           </div>
         </div>
       </div>

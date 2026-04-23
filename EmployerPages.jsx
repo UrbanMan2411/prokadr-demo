@@ -126,7 +126,7 @@ function EmployerDashboard({ resumes, vacancies, invitations, messages }) {
                 title="Разобрать новые резюме"
                 subtitle="Самые свежие публикации уже в верхней части реестра."
                 right={<Badge color="blue">{recentResumes.length}</Badge>}
-                meta="Откройте табличный режим и соберите первый shortlist без лишних переключений."
+                meta="Откройте табличный режим и соберите первый короткий список без лишних переключений."
                 accent="blue"
               />
               <EmployerListCard
@@ -143,7 +143,7 @@ function EmployerDashboard({ resumes, vacancies, invitations, messages }) {
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <StatCard label="Резюме в реестре" value={resumes.length} icon="📄" color="blue" sub="Быстрый поиск по всем резюме" />
-        <StatCard label="В избранном" value={favCount} icon="⭐" color="amber" sub="Shortlist кандидатов" />
+        <StatCard label="В избранном" value={favCount} icon="⭐" color="amber" sub="Короткий список кандидатов" />
         <StatCard label="Активные вакансии" value={activeVac} icon="💼" color="green" sub="Вакансии доступны для приглашений" />
         <StatCard label="Ожидают ответа" value={pendingInv} icon="📨" color="cyan" sub="Отправленные приглашения" />
       </div>
@@ -152,7 +152,7 @@ function EmployerDashboard({ resumes, vacancies, invitations, messages }) {
         <EmployerSection
           eyebrow="Рабочий стол"
           title="Что делать сегодня"
-          description="Новые резюме, короткий shortlist и приглашения собраны в одной секции."
+          description="Новые резюме, короткий список и приглашения собраны в одной секции."
         >
           <div className="grid gap-4 p-4 sm:p-5 lg:grid-cols-2">
             <div className="rounded-[24px] border border-slate-200/70 bg-slate-50/90 p-4">
@@ -184,7 +184,7 @@ function EmployerDashboard({ resumes, vacancies, invitations, messages }) {
               <div className="mb-3 flex items-center justify-between">
                 <div>
                   <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Вакансии в работе</div>
-                  <div className="mt-1 text-sm text-slate-500">Выбор для приглашений и shortlist</div>
+                  <div className="mt-1 text-sm text-slate-500">Выбор для приглашений и короткого списка</div>
                 </div>
                 <Badge color="green">{activeVacancies.length}</Badge>
               </div>
@@ -205,7 +205,7 @@ function EmployerDashboard({ resumes, vacancies, invitations, messages }) {
         </EmployerSection>
 
         <div className="space-y-4">
-          <EmployerSection eyebrow="Shortlist" title="Сохранённые поиски" description="Быстрые сценарии для повторной работы.">
+          <EmployerSection eyebrow="Сценарии" title="Сохранённые поиски" description="Быстрые сценарии для повторной работы.">
             <div className="space-y-3 p-4 sm:p-5">
               {savedSearches.map(search => (
                 <EmployerListCard
@@ -224,7 +224,7 @@ function EmployerDashboard({ resumes, vacancies, invitations, messages }) {
       <div className="grid gap-3 p-4 sm:grid-cols-2 sm:p-5">
               <EmployerInlineStat label="В очереди" value={pendingInv} hint="Нужен follow-up" tone="blue" />
               <EmployerInlineStat label="Непрочитанные" value={unreadMessages} hint="Новые ответы кандидатов" tone="cyan" />
-              <EmployerInlineStat label="Избранные" value={favCount} hint="Текущий shortlist" tone="amber" />
+              <EmployerInlineStat label="Избранные" value={favCount} hint="Текущий короткий список" tone="amber" />
               <EmployerInlineStat label="Все резюме" value={resumes.length} hint="Общий пул кандидатов" tone="slate" />
             </div>
           </EmployerSection>
@@ -456,7 +456,7 @@ function EmployerFavorites({ resumes, setResumes, onOpenResume, vacancies, onInv
     <div className="mx-auto max-w-[1480px] px-4 py-4 sm:px-6 sm:py-6">
       <InviteModal open={invOpen} onClose={()=>setInvOpen(false)} resume={selected} vacancies={vacancies} onSend={onInviteSend}/>
       <EmployerPageHero
-        eyebrow="Работодатель · shortlist"
+        eyebrow="Работодатель · короткий список"
         title="Избранное"
         description="Короткий список кандидатов, которых удобно показать внутри команды, быстро открыть и сразу перевести к приглашению."
         badges={[
@@ -466,7 +466,7 @@ function EmployerFavorites({ resumes, setResumes, onOpenResume, vacancies, onInv
         ]}
         aside={
           <div>
-            <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Состояние shortlist</div>
+            <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Состояние короткого списка</div>
             <div className="mt-3 grid gap-3 sm:grid-cols-2">
               <EmployerInlineStat label="Всего" value={favs.length} hint="кандидатов в фокусе" tone="amber" />
               <EmployerInlineStat label="Готовы к контакту" value={withPhoto} hint="есть фото и контекст" tone="blue" />
@@ -550,8 +550,8 @@ function EmployerMessages({ messages }) {
           <div>
             <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Темп коммуникации</div>
             <div className="mt-3 grid gap-3 sm:grid-cols-2">
-              <EmployerInlineStat label="Inbox" value={messages.length} hint="все активные треды" tone="blue" />
-              <EmployerInlineStat label="Unread" value={unread} hint="нужна реакция" tone="cyan" />
+              <EmployerInlineStat label="Входящие" value={messages.length} hint="все активные треды" tone="blue" />
+              <EmployerInlineStat label="Непрочитанные" value={unread} hint="нужна реакция" tone="cyan" />
             </div>
           </div>
         }
@@ -588,7 +588,7 @@ function EmployerMessages({ messages }) {
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <Badge color={active.fromRole === 'employer' ? 'blue' : 'cyan'}>{active.fromRole}</Badge>
+                <Badge color={active.fromRole === 'employer' ? 'blue' : 'cyan'}>{active.fromRole === 'employer' ? 'Работодатель' : 'Соискатель'}</Badge>
                 {!active.isRead && <Badge color="amber">непрочитано</Badge>}
               </div>
             </div>
@@ -808,17 +808,17 @@ function EmployerUXLab({ resumes, vacancies, invitations, messages }) {
       <EmployerPageHero
         eyebrow="Работодатель · Сценарии"
         title="Демо-сценарии employer-опыта"
-        description="На этой странице собраны ключевые сценарии работодателя: быстрый скрининг, shortlist, приглашения, сообщения и состояния интерфейса."
+        description="На этой странице собраны ключевые сценарии работодателя: быстрый скрининг, короткий список, приглашения, сообщения и состояния интерфейса."
         badges={[
           { label: `${resumes.length} резюме`, color: 'blue' },
-          { label: `${shortlist.length} shortlist`, color: 'cyan' },
+          { label: `${shortlist.length} короткий список`, color: 'cyan' },
           { label: `${sentInvites} приглашений`, color: 'amber' },
         ]}
         aside={
           <div>
             <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Ключевые принципы</div>
             <div className="mt-3 space-y-3">
-              <EmployerListCard title="Табличный режим по умолчанию" subtitle="Лучше работает для массового скрининга" meta="Карточки остаются вторичным режимом для мягкого просмотра и обсуждения shortlist." accent="blue" />
+              <EmployerListCard title="Табличный режим по умолчанию" subtitle="Лучше работает для массового скрининга" meta="Карточки остаются вторичным режимом для мягкого просмотра и обсуждения короткого списка." accent="blue" />
               <EmployerListCard title="Меньше лишних действий" subtitle="Чистая панель фильтров и быстрых сценариев" meta="Фильтры, статусы и быстрые действия должны читаться с первого взгляда без перегруза." accent="amber" />
             </div>
           </div>
@@ -827,7 +827,7 @@ function EmployerUXLab({ resumes, vacancies, invitations, messages }) {
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <StatCard label="Сканируемость" value="Табличный режим" icon="▦" color="blue" sub="Для 20+ резюме" />
-        <StatCard label="Shortlist" value={shortlist.length} icon="⭐" color="amber" sub="Быстрый отбор" />
+        <StatCard label="Короткий список" value={shortlist.length} icon="⭐" color="amber" sub="Быстрый отбор" />
         <StatCard label="Вакансии" value={activeVacancies.length} icon="💼" color="green" sub="Выбор для приглашений" />
         <StatCard label="Сообщения" value={unreadMessages} icon="✉" color="cyan" sub="Непрочитанные" />
       </div>
@@ -835,7 +835,7 @@ function EmployerUXLab({ resumes, vacancies, invitations, messages }) {
       <div className="mt-5 grid gap-4 xl:grid-cols-[1.25fr_0.75fr]">
         <Surface className="overflow-hidden">
           <div className="border-b border-slate-100 px-4 py-4 sm:px-5 sm:py-4">
-            <SectionHeader eyebrow="Dashboard" title="Рабочий стол" description="Сегодняшняя работа: shortlist, вакансии, сообщения и приглашения." />
+            <SectionHeader eyebrow="Обзор" title="Рабочий стол" description="Сегодняшняя работа: короткий список, вакансии, сообщения и приглашения." />
           </div>
           <div className="grid gap-3 p-4 sm:p-5 md:grid-cols-2 xl:grid-cols-4">
             <MiniMetric label="Резюме" value={resumes.length} tone="blue" />
@@ -870,7 +870,7 @@ function EmployerUXLab({ resumes, vacancies, invitations, messages }) {
             <div className="rounded-2xl bg-slate-50 p-4">
               <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Shortlist</div>
+                  <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Короткий список</div>
                   <div className="text-sm text-slate-500">Кандидаты с высоким приоритетом</div>
                 </div>
                 <Badge color="amber">{shortlist.length}</Badge>
@@ -893,7 +893,7 @@ function EmployerUXLab({ resumes, vacancies, invitations, messages }) {
         <div className="space-y-4">
           <Surface className="overflow-hidden">
             <div className="border-b border-slate-100 px-4 py-4 sm:px-5 sm:py-4">
-              <SectionHeader eyebrow="Flow" title="Приглашение" description="Выбор вакансии, сообщение и подтверждение." />
+            <SectionHeader eyebrow="Поток" title="Приглашение" description="Выбор вакансии, сообщение и подтверждение." />
             </div>
             <div className="space-y-3 p-4 sm:p-5">
               {[
@@ -911,7 +911,7 @@ function EmployerUXLab({ resumes, vacancies, invitations, messages }) {
 
           <Surface className="overflow-hidden">
             <div className="border-b border-slate-100 px-4 py-4 sm:px-5 sm:py-4">
-              <SectionHeader eyebrow="Messages" title="Диалоги" description="Master-detail layout для быстрой работы." />
+            <SectionHeader eyebrow="Сообщения" title="Диалоги" description="Master-detail layout для быстрой работы." />
             </div>
             <div className="space-y-3 p-4 sm:p-5">
               {messages.slice(0, 3).map(message => (
@@ -931,11 +931,11 @@ function EmployerUXLab({ resumes, vacancies, invitations, messages }) {
       <div className="mt-5 grid gap-4 xl:grid-cols-2">
         <Surface className="overflow-hidden">
           <div className="border-b border-slate-100 px-4 py-4 sm:px-5 sm:py-4">
-            <SectionHeader eyebrow="Registry" title="Таблица vs карточки" description="Таблица для сканирования, карточки для shortlist и фотоориентированного просмотра." />
+            <SectionHeader eyebrow="Реестр" title="Таблица или карточки" description="Таблица для сканирования, карточки для короткого списка и фотоориентированного просмотра." />
           </div>
           <div className="grid gap-4 p-4 sm:p-5 lg:grid-cols-2">
             <div>
-              <div className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Table mode</div>
+              <div className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Табличный режим</div>
               <div className="rounded-2xl border border-slate-200 bg-white p-3">
                 <div className="grid grid-cols-[1.4fr_0.7fr_0.7fr] gap-2 text-xs font-semibold text-slate-500">
                   <div>Резюме</div>
@@ -954,7 +954,7 @@ function EmployerUXLab({ resumes, vacancies, invitations, messages }) {
               </div>
             </div>
             <div>
-              <div className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Card mode</div>
+              <div className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Карточный режим</div>
               <div className="space-y-2">
                 {topResumes.map(resume => (
                   <div key={resume.id} className="rounded-2xl border border-slate-200 bg-white p-3">
@@ -975,7 +975,7 @@ function EmployerUXLab({ resumes, vacancies, invitations, messages }) {
 
         <Surface className="overflow-hidden">
           <div className="border-b border-slate-100 px-4 py-4 sm:px-5 sm:py-4">
-            <SectionHeader eyebrow="States" title="Empty / Loading / Error" description="Так интерфейс должен выглядеть при сбоях и в пустых выборках." />
+            <SectionHeader eyebrow="Состояния" title="Пусто / загрузка / ошибка" description="Так интерфейс должен выглядеть при сбоях и в пустых выборках." />
           </div>
           <div className="grid gap-4 p-4 sm:p-5 md:grid-cols-3">
             <LoadingState title="Скелетон реестра" rows={3} compact />
@@ -988,7 +988,7 @@ function EmployerUXLab({ resumes, vacancies, invitations, messages }) {
       <Surface className="mt-5 overflow-hidden">
         <div className="border-b border-slate-100 px-4 py-4 sm:px-5 sm:py-4">
           <SectionHeader
-            eyebrow="Architecture"
+            eyebrow="Архитектура"
             title="Секции и иерархия компонентов"
             description="Краткий каркас employer-опыта: что пользователь видит первым, что вторым и где действует."
           />
@@ -996,16 +996,16 @@ function EmployerUXLab({ resumes, vacancies, invitations, messages }) {
         <div className="grid gap-4 p-4 sm:p-5 lg:grid-cols-3">
           {[
             {
-              title: 'Dashboard',
-              items: ['KPI strip', 'Today focus', 'Saved searches', 'Recent resumes'],
+              title: 'Обзор',
+              items: ['Панель KPI', 'Фокус дня', 'Сохранённые поиски', 'Свежие резюме'],
             },
             {
-              title: 'Registry',
-              items: ['Sticky search bar', 'Filter drawer', 'Chips', 'Bulk action bar', 'Table/card results'],
+              title: 'Реестр',
+              items: ['Закреплённый поиск', 'Панель фильтров', 'Chips активных фильтров', 'Панель массовых действий', 'Результаты в таблице и карточках'],
             },
             {
-              title: 'Detail & flows',
-              items: ['Resume detail', 'Invite modal', 'Messages master-detail', 'Favorites shortlist'],
+              title: 'Детали и потоки',
+              items: ['Карточка резюме', 'Модалка приглашения', 'Сообщения master-detail', 'Избранное как короткий список'],
             },
           ].map(section => (
             <div key={section.title} className="rounded-2xl bg-slate-50 p-4">
@@ -1026,9 +1026,9 @@ function EmployerUXLab({ resumes, vacancies, invitations, messages }) {
       <Surface className="mt-5 p-4 sm:p-5">
         <SectionHeader eyebrow="Обоснование" title="Почему таблица по умолчанию" description="Для employer-режима таблица лучше подходит для плотного сканирования, а карточки остаются вторичным режимом просмотра." />
         <div className="mt-4 grid gap-3 md:grid-cols-3">
-          <MiniMetric label="Scanability" value="Высокая" tone="blue" />
-          <MiniMetric label="Bulk actions" value="Лучше" tone="green" />
-          <MiniMetric label="Card mode" value="Вторичный" tone="amber" />
+          <MiniMetric label="Сканируемость" value="Высокая" tone="blue" />
+          <MiniMetric label="Массовые действия" value="Лучше" tone="green" />
+          <MiniMetric label="Карточный режим" value="Вторичный" tone="amber" />
         </div>
       </Surface>
     </div>

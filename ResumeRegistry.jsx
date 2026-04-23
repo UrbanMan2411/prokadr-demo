@@ -249,11 +249,11 @@ function ResumeRegistry({ resumes, setResumes, vacancies, onOpenResume, onInvite
         <div className="grid gap-4 px-4 py-4 sm:px-5 sm:py-5 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <div className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-200">
-              Employer registry
+              Реестр работодателя
             </div>
             <div className="mt-3 text-xl font-semibold tracking-[-0.03em] text-white">Быстрый отбор кандидатов без лишних переходов</div>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
-              Табличный режим остаётся основным инструментом для скрининга. Карточки помогают мягче просматривать shortlist и обсуждать кандидатов с командой.
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
+              Табличный режим остаётся основным инструментом для скрининга. Карточки помогают мягче просматривать короткий список и обсуждать кандидатов с командой.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
@@ -308,7 +308,7 @@ function ResumeRegistry({ resumes, setResumes, vacancies, onOpenResume, onInvite
           <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-slate-500">
             {debouncedQuery && <span className="rounded-full bg-blue-50 px-2.5 py-1 text-blue-700 ring-1 ring-blue-100">Активный запрос</span>}
             {activeChips.length > 0 && <span className="rounded-full bg-slate-100 px-2.5 py-1 text-slate-600">{activeChips.length} фильтров</span>}
-            <span className="rounded-full bg-slate-100 px-2.5 py-1 text-slate-500">{viewMode === 'table' ? 'Режим быстрого скрининга' : 'Режим обсуждения shortlist'}</span>
+            <span className="rounded-full bg-slate-100 px-2.5 py-1 text-slate-500">{viewMode === 'table' ? 'Режим быстрого скрининга' : 'Режим обсуждения короткого списка'}</span>
           </div>
         )}
       </Surface>
@@ -334,7 +334,7 @@ function ResumeRegistry({ resumes, setResumes, vacancies, onOpenResume, onInvite
               </div>
               <div>
                 <div className="text-sm font-semibold text-white">{selectedIds.length} резюме выбрано</div>
-                <div className="text-xs text-slate-300">Можно быстро отметить shortlist, добавить кандидатов в избранное или отправить точечное приглашение.</div>
+                <div className="text-xs text-slate-300">Можно быстро отметить короткий список, добавить кандидатов в избранное или отправить точечное приглашение.</div>
               </div>
             </div>
             <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
@@ -582,7 +582,7 @@ function ResumeTable({ resumes, onOpen, onInvite, onToggleFav, selectedIds, onTo
     <Surface className="overflow-hidden">
       <div className="flex flex-col gap-3 border-b border-slate-100 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Table-first</div>
+          <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Таблица по умолчанию</div>
           <div className="mt-1 text-sm font-semibold text-slate-900">Плотное сравнение кандидатов без лишнего шума</div>
         </div>
         <div className="text-xs text-slate-500">Сильные действия рядом: `избранное`, `открыть`, `пригласить`</div>
