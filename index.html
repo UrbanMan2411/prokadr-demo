@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ПРОкадры · Кабинет для презентации</title>
+    <link rel="icon" href="data:," />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        color-scheme: light;
+      }
+      html, body, #root {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        background: linear-gradient(180deg, #f8fafc 0%, #f3f4f6 100%);
+        color: #0f172a;
+        font-family: "IBM Plex Sans", "Manrope", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        letter-spacing: -0.005em;
+      }
+      ::selection {
+        background: rgba(37, 99, 235, 0.16);
+        color: #0f172a;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel" data-presets="react" src="./ui-components.jsx"></script>
+    <script type="text/babel" data-presets="react" src="./mock-data.js"></script>
+    <script type="text/babel" data-presets="react" src="./Layout.jsx"></script>
+    <script type="text/babel" data-presets="react" src="./EmployerPages.jsx"></script>
+    <script type="text/babel" data-presets="react" src="./ResumeRegistry.jsx"></script>
+    <script type="text/babel" data-presets="react" src="./ResumeDetail.jsx"></script>
+    <script type="text/babel" data-presets="react" src="./RolePages.jsx"></script>
+    <script type="text/babel" data-presets="react" src="./App.jsx"></script>
+    <script type="text/babel">
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
