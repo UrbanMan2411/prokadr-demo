@@ -33,7 +33,7 @@ function WorkspaceHero({ eyebrow, title, description, badges = [], aside }) {
               {eyebrow}
             </div>
             <div className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-blue-700 ring-1 ring-blue-100">
-              Публичная демо-версия
+              Открытый просмотр
             </div>
           </div>
           <h1 className="mt-4 max-w-2xl text-[26px] font-semibold tracking-[-0.03em] text-slate-900 sm:text-[28px]">{title}</h1>
@@ -107,7 +107,7 @@ function SeekerDashboard({ resume, invitations, messages }) {
   }, [resume]);
 
   const stats = [
-    { label: 'Профиль заполнен', value: `${completion}%`, icon: '✓', color: 'blue', sub: 'Резюме готово к просмотру' },
+    { label: 'Профиль заполнен', value: `${completion}%`, icon: '✓', color: 'blue', sub: 'Резюме готово к показу' },
     { label: 'Приглашения', value: invitations.length, icon: '✉', color: 'cyan', sub: 'Новые и прочитанные' },
     { label: 'Сообщения', value: messages.length, icon: '💬', color: 'green', sub: 'Диалоги с работодателями' },
     { label: 'Опубликовано', value: resume?.publishedAt ? fmtDate(resume.publishedAt) : '—', icon: '⏱', color: 'amber', sub: 'Дата последнего обновления' },
@@ -117,8 +117,8 @@ function SeekerDashboard({ resume, invitations, messages }) {
     <div className="mx-auto max-w-[1400px] px-4 py-4 sm:px-6 sm:py-6">
       <WorkspaceHero
         eyebrow="Соискатель · обзор"
-        title="Личный кабинет"
-        description="Здесь собраны статус резюме, свежие приглашения и диалоги с работодателями. Всё, что нужно для следующего шага, видно на первом экране."
+        title="Кабинет соискателя"
+        description="Здесь собраны статус резюме, свежие приглашения и диалоги с работодателями. Вся ключевая информация видна сразу."
         badges={[
           { label: `${completion}% профиль`, color: 'blue' },
           { label: `${invitations.length} приглашений`, color: 'cyan' },
@@ -129,7 +129,7 @@ function SeekerDashboard({ resume, invitations, messages }) {
             <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">Фокус на сегодня</div>
             <QuietListCard
               eyebrow="Профиль"
-              title={completion < 100 ? 'Довести карточку до полной готовности' : 'Профиль выглядит убедительно'}
+              title={completion < 100 ? 'Довести профиль до полной готовности' : 'Профиль выглядит убедительно'}
               subtitle={completion < 100 ? 'Чем полнее резюме, тем проще работодателю принять решение.' : 'Карточка уже содержит ключевые данные для просмотра.'}
               meta={`Последнее обновление: ${resume?.publishedAt ? fmtDate(resume.publishedAt) : 'дата не указана'}`}
               right={<Badge color="blue">{completion}%</Badge>}
@@ -138,7 +138,7 @@ function SeekerDashboard({ resume, invitations, messages }) {
               eyebrow="Предложения"
               title={invitations[0]?.vacancyTitle || 'Новых приглашений пока нет'}
               subtitle={invitations[0]?.employerName || 'Когда появятся новые предложения, они будут видны здесь.'}
-              meta={messages[0]?.text || 'Последние сообщения и приглашения собираются в один рабочий поток.'}
+              meta={messages[0]?.text || 'Последние сообщения и приглашения собраны в один поток.'}
               right={<Badge color="cyan">{invitations.length}</Badge>}
             />
           </div>
@@ -163,7 +163,7 @@ function SeekerDashboard({ resume, invitations, messages }) {
             <div className="grid gap-3 md:grid-cols-2">
               <div className="rounded-2xl border border-slate-200 bg-slate-50/80 p-4">
                 <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Приглашение</div>
-                <div className="mt-2 text-sm font-semibold text-slate-900">Последнее: {invitations[0]?.vacancyTitle || 'нет приглашений'}</div>
+                <div className="mt-2 text-sm font-semibold text-slate-900">Последнее: {invitations[0]?.vacancyTitle || 'пока нет приглашений'}</div>
                 <div className="mt-1 text-sm text-slate-500">{invitations[0]?.employerName || '—'}</div>
               </div>
               <div className="rounded-2xl border border-slate-200 bg-slate-50/80 p-4">
@@ -176,7 +176,7 @@ function SeekerDashboard({ resume, invitations, messages }) {
         </Surface>
 
         <Surface className="p-4 sm:p-5">
-          <SectionHeader eyebrow="Профиль" title="Ключевые данные резюме" description="Короткая сводка по карточке, которую увидит работодатель." />
+          <SectionHeader eyebrow="Профиль" title="Ключевые данные резюме" description="Краткая сводка по карточке, которую увидит работодатель." />
           <div className="mt-4 space-y-2">
             <InfoRow label="Должность" value={resume?.position} />
             <InfoRow label="Город" value={resume?.city} />
@@ -370,15 +370,15 @@ function SeekerMessages({ messages }) {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6 sm:py-6">
-      <div className="mb-5">
-        <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Соискатель · сообщения</div>
-        <h1 className="mt-1 text-2xl font-bold text-slate-900">Диалоги</h1>
-      </div>
+        <div className="mb-5">
+          <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Соискатель · сообщения</div>
+          <h1 className="mt-1 text-2xl font-bold text-slate-900">Диалоги</h1>
+        </div>
 
       <Surface className="flex min-h-[560px] flex-col overflow-hidden lg:flex-row">
         <div className="w-full border-b border-slate-200 bg-slate-50 lg:w-80 lg:border-b-0 lg:border-r">
           <div className="border-b border-slate-200 p-3">
-            <Input value="" onChange={() => {}} placeholder="Поиск по диалогам" prefix={<svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>} />
+            <Input value="" onChange={() => {}} placeholder="Поиск по диалогам" ariaLabel="Поиск по диалогам" prefix={<svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>} />
           </div>
           <div className="max-h-72 divide-y divide-slate-200 overflow-y-auto lg:max-h-none">
             {messages.map(message => (
@@ -418,7 +418,7 @@ function SeekerMessages({ messages }) {
               </div>
               <div className="border-t border-slate-200 p-4">
                 <div className="flex flex-col gap-2 sm:flex-row">
-                  <Input value={reply} onChange={setReply} placeholder="Ответить работодателю" className="flex-1" />
+                  <Input value={reply} onChange={setReply} placeholder="Ответить работодателю" ariaLabel="Ответ работодателю" className="flex-1" />
                   <Btn variant="primary" disabled={reply.trim().length < 2} onClick={() => setReply('')}>Отправить</Btn>
                 </div>
               </div>
@@ -490,11 +490,11 @@ function SeekerSettings() {
     <div className="mx-auto max-w-3xl px-4 py-4 sm:px-6 sm:py-6">
       <div className="mb-5">
         <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Соискатель · настройки</div>
-        <h1 className="mt-1 text-2xl font-bold text-slate-900">Настройки профиля</h1>
+        <h1 className="mt-1 text-2xl font-bold text-slate-900">Настройки видимости</h1>
       </div>
 
       <Surface className="p-4 sm:p-5">
-        <SectionHeader eyebrow="Уведомления" title="Что показывать работодателям" description="Управляйте базовой видимостью и каналами уведомлений." />
+        <SectionHeader eyebrow="Видимость" title="Что показывать работодателям" description="Управляйте видимостью профиля и каналами уведомлений." />
         <div className="mt-4 space-y-3">
           {[
             { key: 'notifications', label: 'Показывать новые приглашения по email' },
@@ -522,7 +522,7 @@ function AdminDashboard({ stats, resumes, employers, vacancies, users }) {
     <div className="mx-auto max-w-[1400px] px-4 py-4 sm:px-6 sm:py-6">
       <div className="mb-5">
         <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Администратор · обзор</div>
-        <h1 className="mt-1 text-2xl font-bold text-slate-900">Админ-панель</h1>
+        <h1 className="mt-1 text-2xl font-bold text-slate-900">Панель управления</h1>
       </div>
 
       <KPIGrid items={[
@@ -534,7 +534,7 @@ function AdminDashboard({ stats, resumes, employers, vacancies, users }) {
 
       <div className="mt-5 grid gap-4 lg:grid-cols-2">
         <Surface className="p-4 sm:p-5">
-          <SectionHeader eyebrow="Проверка" title="Очередь модерации" description="Кандидаты и работодатели, которым требуется ручная проверка." />
+          <SectionHeader eyebrow="Проверка" title="Очередь модерации" description="Кандидаты и работодатели, которым нужна ручная проверка." />
           <div className="mt-4 space-y-3">
             {resumes.filter(item => item.status !== 'active').slice(0, 5).map(item => (
               <div key={item.id} className="flex items-center justify-between gap-3 rounded-xl bg-slate-50 px-3 py-2.5">
@@ -588,7 +588,7 @@ function AdminUsers({ users }) {
   const filtered = users.filter(user => fuzzyIncludes(`${user.fullName} ${user.email} ${user.organization}`, query));
 
   return (
-    <TableWrap title="Пользователи" description="Работодатели и соискатели в едином реестре." action={<Input value={query} onChange={setQuery} placeholder="Поиск пользователей" className="w-72" />}>
+    <TableWrap title="Пользователи" description="Работодатели и соискатели в едином реестре." action={<Input value={query} onChange={setQuery} placeholder="Поиск пользователей" ariaLabel="Поиск пользователей" className="w-72" />}>
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead className="bg-slate-50">
@@ -616,7 +616,7 @@ function AdminUsers({ users }) {
 
 function AdminResumes({ resumes }) {
   return (
-    <TableWrap title="Резюме" description="Одобрение, отклонение и контроль качества данных.">
+    <TableWrap title="Резюме" description="Проверка, одобрение и контроль качества данных.">
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead className="bg-slate-50">
@@ -679,7 +679,7 @@ function AdminEmployers({ employers }) {
 
 function AdminVacancies({ vacancies }) {
   return (
-    <TableWrap title="Вакансии" description="Контроль активных, в работе и архивов.">
+    <TableWrap title="Вакансии" description="Контроль активных, черновиков и архивов.">
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead className="bg-slate-50">
@@ -738,7 +738,7 @@ function AdminDictionaries() {
 
 function AdminLogs({ logs }) {
   return (
-    <TableWrap title="Журнал событий" description="Базовый аудит действий системы и пользователей.">
+    <TableWrap title="Журнал событий" description="Аудит действий системы и пользователей.">
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead className="bg-slate-50">

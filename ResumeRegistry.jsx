@@ -233,7 +233,7 @@ function ResumeRegistry({ resumes, setResumes, vacancies, onOpenResume, onInvite
           <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Работодатель · реестр резюме</div>
           <h1 className="mt-1 text-2xl font-bold text-slate-900">Реестр резюме</h1>
           <p className="mt-1 text-sm text-slate-500">
-            Найдено <span className="font-semibold text-slate-700">{filtered.length}</span> из {resumes.length}
+            Показано <span className="font-semibold text-slate-700">{filtered.length}</span> из {resumes.length}
             {debouncedQuery ? <span className="ml-2 text-blue-600">· запрос: “{debouncedQuery}”</span> : null}
           </p>
         </div>
@@ -257,12 +257,12 @@ function ResumeRegistry({ resumes, setResumes, vacancies, onOpenResume, onInvite
                 Реестр работодателя
               </div>
               <div className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-cyan-100 ring-1 ring-white/10">
-                Публичная демо-версия
+                Открытый просмотр
               </div>
             </div>
             <div className="mt-3 text-xl font-semibold tracking-[-0.03em] text-white">Быстрый отбор кандидатов без лишних переходов</div>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
-              Табличный режим остаётся основным инструментом для скрининга. Карточки помогают мягче просматривать короткий список и обсуждать кандидатов с командой.
+              Таблица остаётся основным инструментом для скрининга. Карточки лучше подходят для короткого списка и командного обсуждения.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
@@ -315,9 +315,9 @@ function ResumeRegistry({ resumes, setResumes, vacancies, onOpenResume, onInvite
 
         {(debouncedQuery || activeChips.length > 0) && (
           <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-slate-500">
-            {debouncedQuery && <span className="rounded-full bg-blue-50 px-2.5 py-1 text-blue-700 ring-1 ring-blue-100">Активный запрос</span>}
+            {debouncedQuery && <span className="rounded-full bg-blue-50 px-2.5 py-1 text-blue-700 ring-1 ring-blue-100">Запрос активен</span>}
             {activeChips.length > 0 && <span className="rounded-full bg-slate-100 px-2.5 py-1 text-slate-600">{activeChips.length} фильтров</span>}
-            <span className="rounded-full bg-slate-100 px-2.5 py-1 text-slate-500">{viewMode === 'table' ? 'Режим быстрого скрининга' : 'Режим обсуждения короткого списка'}</span>
+            <span className="rounded-full bg-slate-100 px-2.5 py-1 text-slate-500">{viewMode === 'table' ? 'Режим быстрого отбора' : 'Режим обсуждения короткого списка'}</span>
           </div>
         )}
       </Surface>
@@ -343,7 +343,7 @@ function ResumeRegistry({ resumes, setResumes, vacancies, onOpenResume, onInvite
               </div>
               <div>
                 <div className="text-sm font-semibold text-white">{selectedIds.length} резюме выбрано</div>
-                <div className="text-xs text-slate-300">Можно быстро отметить короткий список, добавить кандидатов в избранное или отправить точечное приглашение.</div>
+                <div className="text-xs text-slate-300">Можно добавить в избранное, снять выделение или отправить приглашение.</div>
               </div>
             </div>
             <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
@@ -367,7 +367,7 @@ function ResumeRegistry({ resumes, setResumes, vacancies, onOpenResume, onInvite
             <SectionHeader
               eyebrow="Фильтры"
               title="Расширенный поиск"
-              description="Регион учитывает города внутри субъекта, а списки поддерживают множественный выбор и поиск по названию."
+              description="Регион включает города внутри субъекта, а списки поддерживают поиск и множественный выбор."
               action={<Btn variant="ghost" onClick={resetFilters}>Сбросить всё</Btn>}
             />
           </div>
@@ -529,8 +529,8 @@ function ResumeRegistry({ resumes, setResumes, vacancies, onOpenResume, onInvite
         <Surface className="py-6">
           <EmptyState
             icon="🔍"
-            title="Подходящих резюме нет по текущим условиям"
-            description="Измените запрос, ослабьте фильтры или откройте другой сохранённый сценарий поиска."
+            title="По текущим условиям ничего не найдено"
+            description="Измените запрос, ослабьте фильтры или откройте другой сценарий поиска."
             action={<Btn variant="secondary" onClick={resetFilters}>Сбросить фильтры</Btn>}
           />
         </Surface>
@@ -594,7 +594,7 @@ function ResumeTable({ resumes, onOpen, onInvite, onToggleFav, selectedIds, onTo
           <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Таблица по умолчанию</div>
           <div className="mt-1 text-sm font-semibold text-slate-900">Плотное сравнение кандидатов без лишнего шума</div>
         </div>
-        <div className="text-xs text-slate-500">Сильные действия рядом: `избранное`, `открыть`, `пригласить`</div>
+        <div className="text-xs text-slate-500">Быстрые действия рядом: избранное, открыть, пригласить</div>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full min-w-[1180px] text-sm">

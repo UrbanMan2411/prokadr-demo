@@ -17,7 +17,7 @@ function EmployerPageHero({ eyebrow, title, description, badges = [], actions, a
               {eyebrow}
             </div>
             <div className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-blue-700 ring-1 ring-blue-100">
-              Демо без регистрации
+              Открытый просмотр
             </div>
           </div>
           <div className="mt-4 h-1 w-16 rounded-full bg-gradient-to-r from-blue-600 via-cyan-500 to-amber-400" />
@@ -55,6 +55,12 @@ function EmployerSection({ eyebrow, title, description, action, children, classN
       {children}
     </Surface>
   );
+}
+
+function formatConditionCount(count) {
+  if (count === 1) return '1 условие поиска';
+  if (count >= 2 && count <= 4) return `${count} условия поиска`;
+  return `${count} условий поиска`;
 }
 
 function EmployerInlineStat({ label, value, hint, tone = 'blue' }) {
@@ -122,7 +128,7 @@ function EmployerDashboard({ resumes, vacancies, invitations, messages }) {
       <EmployerPageHero
         eyebrow="Работодатель · обзор"
         title="Кабинет работодателя"
-        description="Единый рабочий контур для поиска кандидатов, короткого списка и приглашений. Здесь работодатель видит приоритеты дня и быстро переводит подбор в действие."
+        description="Единое место для поиска кандидатов, короткого списка и приглашений. Здесь видно приоритет дня и следующий шаг без лишних переходов."
         badges={[
           { label: `${savedSearches.length} сохранённых поисков`, color: 'blue' },
           { label: `${unreadMessages} непрочитанных`, color: 'cyan' },
@@ -134,14 +140,14 @@ function EmployerDashboard({ resumes, vacancies, invitations, messages }) {
             <div className="mt-3 space-y-3">
               <EmployerListCard
                 title="Разобрать новые резюме"
-                subtitle="Самые свежие публикации уже в верхней части реестра."
+                subtitle="Свежие публикации уже в верхней части реестра."
                 right={<Badge color="blue">{recentResumes.length}</Badge>}
                 meta="Откройте табличный режим и соберите первый короткий список без лишних переключений."
                 accent="blue"
               />
               <EmployerListCard
-                title="Дожать приглашения"
-                subtitle="Часть кандидатов ещё не ответила."
+                title="Отработать приглашения"
+                subtitle="Часть кандидатов ещё ждёт ответа."
                 right={<Badge color="cyan">{pendingInv}</Badge>}
                 meta="Вся история контакта уже под рукой: вакансии, ответы и текущий статус."
                 accent="cyan"
@@ -152,23 +158,23 @@ function EmployerDashboard({ resumes, vacancies, invitations, messages }) {
       />
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        <StatCard label="Резюме в реестре" value={resumes.length} icon="📄" color="blue" sub="Быстрый поиск по всем резюме" />
-        <StatCard label="В избранном" value={favCount} icon="⭐" color="amber" sub="Короткий список кандидатов" />
-        <StatCard label="Активные вакансии" value={activeVac} icon="💼" color="green" sub="Вакансии доступны для приглашений" />
-        <StatCard label="Ожидают ответа" value={pendingInv} icon="📨" color="cyan" sub="Отправленные приглашения" />
+        <StatCard label="Резюме в реестре" value={resumes.length} icon="📄" color="blue" sub="Поиск по всей базе резюме" />
+        <StatCard label="В избранном" value={favCount} icon="⭐" color="amber" sub="Кандидаты в коротком списке" />
+        <StatCard label="Активные вакансии" value={activeVac} icon="💼" color="green" sub="Из них можно отправлять приглашения" />
+        <StatCard label="Ожидают ответа" value={pendingInv} icon="📨" color="cyan" sub="Приглашения без ответа" />
       </div>
 
       <div className="mt-5 grid gap-4 xl:grid-cols-[1.35fr_0.85fr]">
         <EmployerSection
           eyebrow="Рабочий стол"
           title="Что делать сегодня"
-          description="Новые резюме, короткий список и приглашения собраны в одной секции."
+          description="Новые резюме, короткий список и приглашения собраны в одном рабочем блоке."
         >
           <div className="grid gap-4 p-4 sm:p-5 lg:grid-cols-2">
             <div className="rounded-[24px] border border-slate-200/70 bg-slate-50/90 p-4">
               <div className="mb-3 flex items-center justify-between">
-                <div>
-                  <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Новые резюме</div>
+                  <div>
+                    <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Новые резюме</div>
                   <div className="mt-1 text-sm text-slate-500">Последние обновления в реестре</div>
                 </div>
                 <Badge color="blue">{recentResumes.length}</Badge>
@@ -192,9 +198,9 @@ function EmployerDashboard({ resumes, vacancies, invitations, messages }) {
 
             <div className="rounded-[24px] border border-slate-200/70 bg-slate-50/90 p-4">
               <div className="mb-3 flex items-center justify-between">
-                <div>
-                  <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Вакансии в работе</div>
-                  <div className="mt-1 text-sm text-slate-500">Выбор для приглашений и короткого списка</div>
+                  <div>
+                    <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Вакансии в работе</div>
+                  <div className="mt-1 text-sm text-slate-500">Основа для приглашений и короткого списка</div>
                 </div>
                 <Badge color="green">{activeVacancies.length}</Badge>
               </div>
@@ -215,13 +221,13 @@ function EmployerDashboard({ resumes, vacancies, invitations, messages }) {
         </EmployerSection>
 
         <div className="space-y-4">
-          <EmployerSection eyebrow="Сценарии" title="Сохранённые поиски" description="Быстрые сценарии для повторной работы.">
+          <EmployerSection eyebrow="Сценарии" title="Сохранённые поиски" description="Сценарии для повторных поисков и быстрых запусков.">
             <div className="space-y-3 p-4 sm:p-5">
               {savedSearches.map(search => (
                 <EmployerListCard
                   key={search.id}
                   title={search.name}
-                  subtitle={`${Object.keys(search.filters || {}).filter(key => search.filters[key]).length} условий поиска`}
+                  subtitle={formatConditionCount(Object.keys(search.filters || {}).filter(key => search.filters[key]).length)}
                   right={<Badge color="slate">сценарий</Badge>}
                   meta={search.query ? `Запрос: ${search.query}` : 'Без текстового запроса'}
                   accent="amber"
@@ -230,9 +236,9 @@ function EmployerDashboard({ resumes, vacancies, invitations, messages }) {
             </div>
           </EmployerSection>
 
-          <EmployerSection eyebrow="Коммуникации" title="Статусы очереди" description="Что уже отправлено и что требует реакции.">
+          <EmployerSection eyebrow="Коммуникации" title="Статусы очереди" description="Что уже отправлено и что требует ответа.">
       <div className="grid gap-3 p-4 sm:grid-cols-2 sm:p-5">
-              <EmployerInlineStat label="В очереди" value={pendingInv} hint="Нужен follow-up" tone="blue" />
+              <EmployerInlineStat label="В очереди" value={pendingInv} hint="Требуется ответ" tone="blue" />
               <EmployerInlineStat label="Непрочитанные" value={unreadMessages} hint="Новые ответы кандидатов" tone="cyan" />
               <EmployerInlineStat label="Избранные" value={favCount} hint="Текущий короткий список" tone="amber" />
               <EmployerInlineStat label="Все резюме" value={resumes.length} hint="Общий пул кандидатов" tone="slate" />
@@ -253,9 +259,9 @@ function VacancyModal({ open, onClose, vacancy, onSave }) {
 
   return (
     <Modal open={open} onClose={onClose} title={vacancy ? 'Редактировать вакансию' : 'Новая вакансия'} size="lg">
-      <div className="mb-5 rounded-[22px] border border-slate-200/80 bg-slate-50/80 p-4">
+        <div className="mb-5 rounded-[22px] border border-slate-200/80 bg-slate-50/80 p-4">
         <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Параметры вакансии</div>
-        <div className="mt-2 text-sm text-slate-500">Соберите ключевую рамку вакансии: название, статус, локацию и компенсацию. Описание поможет в приглашениях и сравнении внутри кабинета.</div>
+        <div className="mt-2 text-sm text-slate-500">Заполните название, статус, локацию и компенсацию. Описание помогает быстрее выбирать вакансию при приглашении.</div>
       </div>
       <div className="mb-4 grid gap-4 sm:grid-cols-2">
         <div className="sm:col-span-2">
@@ -341,7 +347,7 @@ function EmployerVacancies({ vacancies, setVacancies }) {
       <EmployerPageHero
         eyebrow="Работодатель · вакансии"
         title="Вакансии"
-        description="Список вакансий должен быть похож на операционный стол: статус, зарплатный коридор и быстрые действия читаются за один взгляд."
+        description="Список вакансий должен читаться за один взгляд: статус, зарплатный диапазон и быстрые действия видны сразу."
         badges={[
           { label: `${summary.active} активных`, color: 'green' },
           { label: `${summary.draft} на подготовке`, color: 'amber' },
@@ -371,7 +377,7 @@ function EmployerVacancies({ vacancies, setVacancies }) {
         {cards.map(card => <StatCard key={card.label} label={card.label} value={card.value} icon="•" color={card.tone} />)}
       </div>
 
-      <EmployerSection
+        <EmployerSection
         eyebrow="Фильтры"
         title="Управление списком вакансий"
         description="Сначала быстрый поиск, затем фильтр по статусу. Ничего лишнего перед основной таблицей."
@@ -399,7 +405,7 @@ function EmployerVacancies({ vacancies, setVacancies }) {
         <Surface className="mt-5">
           <EmptyState
             icon="💼"
-            title="Список пуст по текущим условиям"
+            title="По текущим условиям ничего не найдено"
             description="Попробуйте другой статус или снимите поисковый фильтр."
             action={<Btn variant="secondary" onClick={()=>{setSearch('');setStatusFilter('all');}}>Сбросить фильтры</Btn>}
           />
@@ -408,7 +414,7 @@ function EmployerVacancies({ vacancies, setVacancies }) {
         <EmployerSection
           eyebrow="Список вакансий"
           title="Рабочий кабинет вакансий"
-          description="Каждая строка должна приводить к действию: открыть, редактировать, архивировать."
+          description="Каждая строка ведёт к действию: открыть, редактировать или архивировать."
           className="mt-5"
         >
           <div className="overflow-x-auto">
@@ -468,7 +474,7 @@ function EmployerFavorites({ resumes, setResumes, onOpenResume, vacancies, onInv
       <EmployerPageHero
         eyebrow="Работодатель · короткий список"
         title="Избранное"
-        description="Короткий список кандидатов, которых удобно показать внутри команды, быстро открыть и сразу перевести к приглашению."
+        description="Короткий список кандидатов для обсуждения в команде, быстрого просмотра и приглашения."
         badges={[
           { label: `${withPhoto} с фото`, color: 'blue' },
           { label: `${withTests} с тестами`, color: 'cyan' },
@@ -486,7 +492,7 @@ function EmployerFavorites({ resumes, setResumes, onOpenResume, vacancies, onInv
       />
       {favs.length === 0 ? (
         <Surface>
-          <EmptyState icon="⭐" title="Избранных нет" description="Добавляйте кандидатов в избранное прямо из реестра резюме"/>
+          <EmptyState icon="⭐" title="Пока нет избранных" description="Добавляйте кандидатов в избранное прямо из реестра резюме"/>
         </Surface>
       ) : (
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -551,7 +557,7 @@ function EmployerMessages({ messages }) {
       <EmployerPageHero
         eyebrow="Работодатель · сообщения"
         title="Сообщения"
-        description="Мастер-детайл для рабочей переписки: слева поток диалогов, справа контекст и быстрый ответ без лишнего шума."
+        description="Список диалогов слева, активный тред справа и быстрый ответ в одном окне."
         badges={[
           { label: `${messages.length} диалогов`, color: 'blue' },
           { label: `${unread} непрочитанных`, color: 'cyan' },
@@ -654,7 +660,7 @@ function EmployerInvitations({ invitations }) {
       <EmployerPageHero
         eyebrow="Работодатель · приглашения"
         title="Приглашения"
-        description="Отслеживание статусов приглашений без лишних экранов: отправлено, просмотрено, принято или отклонено."
+        description="Единый журнал статусов: отправлено, просмотрено, принято или отклонено."
         badges={stats.map(stat => ({ label: `${invitations.filter(i=>i.status===stat.status).length} ${stat.label.toLowerCase()}`, color: stat.color }))}
         aside={
           <div>
@@ -679,8 +685,8 @@ function EmployerInvitations({ invitations }) {
       </div>
       <EmployerSection
         eyebrow="Журнал приглашений"
-        title="Все отправки"
-        description="Компактный список для контроля по кандидату, вакансии и итоговому статусу."
+        title="Журнал отправки"
+        description="Короткий список для контроля кандидата, вакансии и результата."
       >
         <div className="space-y-3 p-4 sm:p-5 md:hidden">
           {invitations.map(inv => (
@@ -735,7 +741,7 @@ function CompanyProfile() {
       <EmployerPageHero
         eyebrow="Работодатель · профиль"
         title="Профиль компании"
-        description="Базовые реквизиты и краткое позиционирование компании. Этот экран должен выглядеть спокойно и официально."
+        description="Базовые реквизиты и описание компании в спокойной, официальной подаче."
         badges={[
           { label: form.region, color: 'slate' },
           { label: form.contactName, color: 'blue' },
@@ -817,8 +823,8 @@ function EmployerUXLab({ resumes, vacancies, invitations, messages }) {
     <div className="mx-auto max-w-[1560px] px-4 py-4 sm:px-6 sm:py-6">
       <EmployerPageHero
         eyebrow="Работодатель · Сценарии"
-        title="Демо-сценарии employer-опыта"
-        description="На этой странице собраны ключевые сценарии работодателя: быстрый скрининг, короткий список, приглашения, сообщения и состояния интерфейса."
+        title="Сценарии employer-опыта"
+        description="Здесь собраны ключевые сценарии работодателя: быстрый скрининг, короткий список, приглашения, сообщения и состояния интерфейса."
         badges={[
           { label: `${resumes.length} резюме`, color: 'blue' },
           { label: `${shortlist.length} короткий список`, color: 'cyan' },
@@ -828,8 +834,8 @@ function EmployerUXLab({ resumes, vacancies, invitations, messages }) {
           <div>
             <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Ключевые принципы</div>
             <div className="mt-3 space-y-3">
-              <EmployerListCard title="Табличный режим по умолчанию" subtitle="Лучше работает для массового скрининга" meta="Карточки остаются вторичным режимом для мягкого просмотра и обсуждения короткого списка." accent="blue" />
-              <EmployerListCard title="Меньше лишних действий" subtitle="Чистая панель фильтров и быстрых сценариев" meta="Фильтры, статусы и быстрые действия должны читаться с первого взгляда без перегруза." accent="amber" />
+              <EmployerListCard title="Табличный режим по умолчанию" subtitle="Лучше работает для массового скрининга" meta="Карточки остаются вторичным режимом для обсуждения короткого списка." accent="blue" />
+              <EmployerListCard title="Меньше лишних действий" subtitle="Чистая панель фильтров и быстрых сценариев" meta="Фильтры, статусы и быстрые действия должны читаться с первого взгляда." accent="amber" />
             </div>
           </div>
         }

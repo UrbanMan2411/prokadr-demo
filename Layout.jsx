@@ -104,7 +104,7 @@ function Sidebar({ role, page, setPage, className = '' }) {
         </div>
         <div className="mt-3 flex items-center gap-2">
           <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-blue-700 ring-1 ring-blue-100">
-            Демо без регистрации
+            Открытый просмотр
           </span>
           <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 ring-1 ring-slate-200">
             Готово к показу
@@ -130,7 +130,7 @@ function Sidebar({ role, page, setPage, className = '' }) {
       <div className="border-t border-slate-100 px-4 py-4">
         <div className="rounded-2xl border border-slate-200/80 bg-white/80 px-3.5 py-3 text-xs text-slate-500 shadow-sm backdrop-blur">
           <div className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-700 ring-1 ring-emerald-100">Готово к показу</div>
-          <div className="mt-2 text-[11px] leading-relaxed">Демо-данные · RBAC · модульные страницы · public preview</div>
+          <div className="mt-2 text-[11px] leading-relaxed">Данные примера · роли · модульные страницы · публичный просмотр</div>
         </div>
       </div>
     </aside>
@@ -147,7 +147,7 @@ function Header({ role, setRole, page, className = '' }) {
         <div className="mt-0.5 flex items-center gap-2 text-xs text-slate-400">
           <span>Рабочее пространство · {getPageLabel(role, page)}</span>
           <span className="inline-flex items-center rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 ring-1 ring-slate-200">
-            Презентационный режим
+            Режим показа
           </span>
         </div>
       </div>
@@ -178,7 +178,7 @@ function MobileTopBar({ role, setRole, page, setPage }) {
       <div className="flex items-center justify-between gap-3 px-4 pt-3">
         <div className="min-w-0">
           <div className="text-sm font-semibold tracking-[-0.02em] text-slate-900">ПРОкадры</div>
-          <div className="text-[11px] text-slate-500">Кабинет для презентации</div>
+          <div className="text-[11px] text-slate-500">Открытый просмотр кабинета</div>
         </div>
         <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[linear-gradient(135deg,#1d4ed8,#0ea5e9)] text-xs font-semibold text-white shadow-[0_10px_24px_rgba(37,99,235,0.18)]">
           {role === 'employer' ? 'РА' : role === 'seeker' ? 'ИВ' : 'АД'}
@@ -196,7 +196,7 @@ function MobileTopBar({ role, setRole, page, setPage }) {
         </div>
         <div className="mt-2 flex items-center gap-2 overflow-x-auto whitespace-nowrap px-0 pb-0.5">
           <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-blue-700 ring-1 ring-blue-100">
-            Демо без регистрации
+            Открытый просмотр
           </span>
           <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 ring-1 ring-slate-200">
             Готово к показу
