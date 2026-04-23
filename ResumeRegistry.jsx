@@ -245,14 +245,18 @@ function ResumeRegistry({ resumes, setResumes, vacancies, onOpenResume, onInvite
         </div>
       </div>
 
-      <Surface className="mb-4 overflow-hidden border-slate-200/90 bg-slate-950 text-white">
-        <div className="grid gap-4 px-4 py-4 sm:px-5 sm:py-5 lg:grid-cols-[1.1fr_0.9fr]">
+      <Surface className="mb-4 overflow-hidden border-slate-200/90 bg-[linear-gradient(135deg,#0f172a_0%,#111827_56%,#0f766e_100%)] text-white">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -right-24 top-0 h-56 w-56 rounded-full bg-cyan-400/15 blur-3xl" />
+          <div className="absolute -left-16 bottom-0 h-52 w-52 rounded-full bg-blue-400/15 blur-3xl" />
+        </div>
+        <div className="relative grid gap-4 px-4 py-4 sm:px-5 sm:py-5 lg:grid-cols-[1.08fr_0.92fr]">
           <div>
             <div className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-200">
               Реестр работодателя
             </div>
             <div className="mt-3 text-xl font-semibold tracking-[-0.03em] text-white">Быстрый отбор кандидатов без лишних переходов</div>
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">
               Табличный режим остаётся основным инструментом для скрининга. Карточки помогают мягче просматривать короткий список и обсуждать кандидатов с командой.
             </p>
           </div>
@@ -264,7 +268,7 @@ function ResumeRegistry({ resumes, setResumes, vacancies, onOpenResume, onInvite
         </div>
       </Surface>
 
-      <Surface className="sticky top-3 z-20 mb-4 overflow-visible border-slate-200/90 bg-white/96 p-4 sm:top-4">
+      <Surface className="sticky top-3 z-20 mb-4 overflow-visible border-slate-200/90 bg-white/88 p-4 shadow-[0_20px_45px_rgba(15,23,42,0.08)] backdrop-blur-md sm:top-4">
         <div className="mb-4 flex flex-col gap-3 border-b border-slate-100 pb-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-2">
             <RegistryTag>{selectedPresetName || 'Ручной сценарий'}</RegistryTag>

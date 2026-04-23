@@ -5,13 +5,18 @@ var { useState, useEffect, useMemo } = React;
 
 function EmployerPageHero({ eyebrow, title, description, badges = [], actions, aside }) {
   return (
-    <Surface className="mb-6 overflow-hidden">
-      <div className="grid gap-4 px-4 py-4 sm:px-6 sm:py-6 xl:grid-cols-[1.18fr_0.82fr]">
-        <div>
+    <Surface className="mb-6 overflow-hidden bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.94))]">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -right-20 top-0 h-56 w-56 rounded-full bg-blue-200/20 blur-3xl" />
+        <div className="absolute -left-16 bottom-0 h-48 w-48 rounded-full bg-cyan-200/20 blur-3xl" />
+      </div>
+      <div className="relative grid gap-5 px-4 py-4 sm:px-6 sm:py-6 xl:grid-cols-[1.14fr_0.86fr]">
+        <div className="max-w-3xl">
           <div className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500">
             {eyebrow}
           </div>
-          <h1 className="mt-4 max-w-3xl text-[30px] font-semibold leading-tight tracking-[-0.04em] text-slate-900">
+          <div className="mt-4 h-1 w-16 rounded-full bg-gradient-to-r from-blue-600 via-cyan-500 to-amber-400" />
+          <h1 className="mt-4 text-[30px] font-semibold leading-tight tracking-[-0.04em] text-slate-900 sm:text-[34px]">
             {title}
           </h1>
           <p className="mt-3 max-w-2xl text-[15px] leading-7 text-slate-600">
@@ -28,7 +33,7 @@ function EmployerPageHero({ eyebrow, title, description, badges = [], actions, a
             </div>
           )}
         </div>
-        <div className="rounded-[20px] border border-slate-200 bg-[linear-gradient(180deg,rgba(248,250,252,0.96),rgba(241,245,249,0.92))] p-4 shadow-sm sm:p-5">
+        <div className="rounded-[22px] border border-white/70 bg-[linear-gradient(180deg,rgba(248,250,252,0.96),rgba(241,245,249,0.9))] p-4 shadow-[0_18px_40px_rgba(15,23,42,0.08)] ring-1 ring-slate-200/70 sm:p-5">
           {aside}
         </div>
       </div>
@@ -75,7 +80,7 @@ function EmployerListCard({ title, subtitle, meta, right, footer, onClick, accen
   };
 
   const content = (
-    <div className={`rounded-2xl border border-slate-200 bg-white p-4 transition-colors hover:border-slate-300 hover:bg-slate-50/60 ${onClick ? 'cursor-pointer' : ''}`}>
+    <div className={`rounded-2xl border border-slate-200 bg-white p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50/80 hover:shadow-sm ${onClick ? 'cursor-pointer' : ''}`}>
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className={`min-w-0 border-l-2 pl-3 ${accents[accent] || accents.blue}`}>
           <div className="truncate text-sm font-semibold text-slate-900">{title}</div>

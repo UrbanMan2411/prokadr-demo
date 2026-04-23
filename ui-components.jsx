@@ -119,9 +119,10 @@ function Surface({ children, className='', ...props }) {
   return (
     <div
       {...props}
-      className={`relative overflow-hidden rounded-[18px] border border-slate-200/80 bg-white shadow-[0_10px_30px_rgba(15,23,42,0.05)] sm:rounded-[20px] ${className}`}
+      className={`relative overflow-hidden rounded-[18px] border border-slate-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.94))] shadow-[0_14px_38px_rgba(15,23,42,0.06)] sm:rounded-[20px] ${className}`}
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-slate-200/80" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-white/40 to-transparent" />
       {children}
     </div>
   );
@@ -420,15 +421,15 @@ function StatCard({ label, value, icon, color='blue', sub }) {
     slate:'bg-slate-500',
   };
   return (
-    <div className="group rounded-[20px] border border-slate-200 bg-white p-4 shadow-sm transition-shadow duration-200 hover:shadow-md">
+    <div className="group rounded-[22px] border border-slate-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.94))] p-4 shadow-[0_10px_28px_rgba(15,23,42,0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_18px_34px_rgba(15,23,42,0.08)]">
       <div className={`mb-4 h-1.5 w-14 rounded-full ${colors[color] || colors.blue}`} />
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <div className="text-2xl font-semibold tracking-[-0.03em] text-slate-900 leading-none">{value}</div>
+          <div className="text-[2rem] font-semibold leading-none tracking-[-0.04em] text-slate-900">{value}</div>
           <div className="mt-1 text-sm font-medium text-slate-700">{label}</div>
           {sub && <div className="mt-1.5 text-xs leading-relaxed text-slate-500">{sub}</div>}
         </div>
-        <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-700">
+        <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-white text-slate-700 ring-1 ring-slate-200">
           <span className="text-lg">{icon}</span>
         </div>
       </div>
@@ -439,11 +440,13 @@ function StatCard({ label, value, icon, color='blue', sub }) {
 // ── Empty State ────────────────────────────────────────────────────────────
 function EmptyState({ icon='📄', title, description, action }) {
   return (
-    <div className="flex flex-col items-center justify-center rounded-[20px] border border-dashed border-slate-200 bg-slate-50/70 py-12 text-center sm:py-16">
-      <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-[18px] bg-white text-3xl text-slate-500 shadow-sm ring-1 ring-slate-200">{icon}</div>
-      <div className="mb-1 text-base font-semibold text-slate-800">{title}</div>
-      {description && <div className="mb-5 max-w-xs text-sm text-slate-500">{description}</div>}
-      {action}
+    <div className="flex flex-col items-center justify-center rounded-[24px] border border-dashed border-slate-200 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.95),rgba(248,250,252,0.78))] px-5 py-12 text-center sm:px-8 sm:py-16">
+      <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-[20px] bg-white text-3xl text-slate-500 shadow-sm ring-1 ring-slate-200">
+        {icon}
+      </div>
+      <div className="mb-2 text-base font-semibold tracking-[-0.02em] text-slate-900">{title}</div>
+      {description && <div className="mb-5 max-w-sm text-sm leading-relaxed text-slate-500">{description}</div>}
+      {action && <div className="inline-flex">{action}</div>}
     </div>
   );
 }
@@ -452,13 +455,16 @@ function EmptyState({ icon='📄', title, description, action }) {
 function LoadingState({ title = 'Загрузка данных', rows = 4, compact = false }) {
   return (
     <div className={`rounded-[20px] border border-slate-200 bg-white ${compact ? 'p-4' : 'p-4 sm:p-6'} shadow-sm`}>
-      <div className="mb-4">
-        <div className="h-4 w-40 rounded-full bg-slate-200 animate-pulse" />
-        <div className="mt-2 h-3 w-64 rounded-full bg-slate-100 animate-pulse" />
+      <div className="mb-5 flex items-center justify-between gap-3">
+        <div>
+          <div className="h-4 w-40 rounded-full bg-slate-200 animate-pulse" />
+          <div className="mt-2 h-3 w-64 rounded-full bg-slate-100 animate-pulse" />
+        </div>
+        <div className="h-9 w-20 rounded-full bg-slate-100 animate-pulse" />
       </div>
       <div className="space-y-3">
         {Array.from({ length: rows }).map((_, index) => (
-          <div key={index} className="flex items-center gap-3">
+          <div key={index} className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-slate-50/60 p-3">
             <div className="h-10 w-10 rounded-full bg-slate-200 animate-pulse" />
             <div className="flex-1 space-y-2">
               <div className="h-3 w-3/4 rounded-full bg-slate-200 animate-pulse" />
@@ -467,7 +473,7 @@ function LoadingState({ title = 'Загрузка данных', rows = 4, compa
           </div>
         ))}
       </div>
-      <div className="mt-4 text-xs text-slate-400">{title}</div>
+      <div className="mt-4 text-xs font-medium text-slate-400">{title}</div>
     </div>
   );
 }
@@ -475,13 +481,13 @@ function LoadingState({ title = 'Загрузка данных', rows = 4, compa
 // ── Error State ───────────────────────────────────────────────────────────
 function ErrorState({ title = 'Не удалось загрузить данные', description = 'Попробуйте обновить страницу или повторить позже.', action }) {
   return (
-    <div className="rounded-[20px] border border-red-200 bg-red-50/70 p-6 text-center">
-      <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-[18px] bg-white text-red-500 ring-1 ring-red-200 shadow-sm">
+    <div className="rounded-[20px] border border-red-200 bg-[linear-gradient(180deg,rgba(255,247,247,0.98),rgba(254,242,242,0.9))] p-6 text-center">
+      <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-[18px] bg-white text-red-500 ring-1 ring-red-200 shadow-sm">
         !
       </div>
       <div className="text-sm font-semibold text-red-900">{title}</div>
-      <div className="mx-auto mt-1 max-w-sm text-sm text-red-700/80">{description}</div>
-      {action && <div className="mt-4">{action}</div>}
+      <div className="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-red-700/80">{description}</div>
+      {action && <div className="mt-4 inline-flex">{action}</div>}
     </div>
   );
 }
