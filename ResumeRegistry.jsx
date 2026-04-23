@@ -302,7 +302,7 @@ function ResumeRegistry({ resumes, setResumes, vacancies, onOpenResume, onInvite
             onChange={setQuery}
             placeholder="Поиск по должности, о себе, сфере, городу..."
             prefix={<svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>}
-            suffix={query ? <button onClick={() => setQuery('')} className="text-slate-400 transition hover:text-slate-700">✕</button> : null}
+            suffix={query ? <button onClick={() => setQuery('')} aria-label="Очистить поиск" title="Очистить поиск" className="text-slate-400 transition hover:text-slate-700">✕</button> : null}
           />
           <Select
             value={selectedPreset}

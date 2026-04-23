@@ -45,7 +45,7 @@ function Badge({ children, color = 'blue', size = 'sm' }) {
 }
 
 // ── Button ─────────────────────────────────────────────────────────────────
-function Btn({ children, variant='primary', size='md', onClick, disabled, className='', type='button', icon }) {
+function Btn({ children, variant='primary', size='md', onClick, disabled, className='', type='button', icon, ariaLabel, title }) {
   const base = 'inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl border font-medium transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-50 cursor-pointer touch-manipulation disabled:cursor-not-allowed disabled:opacity-50';
   const variants = {
     primary:  'bg-blue-600 text-white border-blue-600 hover:bg-blue-700 focus:ring-blue-500 shadow-sm',
@@ -57,7 +57,7 @@ function Btn({ children, variant='primary', size='md', onClick, disabled, classN
   };
   const sizes = { xs:'px-2.5 py-1.5 text-xs', sm:'px-3.5 py-2 text-sm', md:'px-4 py-2.5 text-sm', lg:'px-5 py-3 text-base' };
   return (
-    <button type={type} onClick={onClick} disabled={disabled}
+    <button type={type} onClick={onClick} disabled={disabled} aria-label={ariaLabel} title={title}
       className={`${base} ${variants[variant]||variants.primary} ${sizes[size]||sizes.md} ${className}`}>
       {icon && <span className="w-4 h-4">{icon}</span>}
       {children}
@@ -66,11 +66,14 @@ function Btn({ children, variant='primary', size='md', onClick, disabled, classN
 }
 
 // ── Input ──────────────────────────────────────────────────────────────────
-function Input({ value, onChange, placeholder, className='', type='text', prefix, suffix }) {
+function Input({ value, onChange, placeholder, className='', type='text', prefix, suffix, name, id, autoComplete='off', inputMode, ariaLabel, spellCheck }) {
+  const fallbackName = normalizeText(placeholder || 'field').replace(/\s+/g, '-') || 'field';
+  const fieldId = id || fallbackName;
+  const fieldName = name || fallbackName;
   return (
     <div className={`relative flex items-center ${className}`}>
       {prefix && <span className="absolute left-3 text-slate-400 pointer-events-none">{prefix}</span>}
-      <input type={type} value={value} onChange={e=>onChange(e.target.value)} placeholder={placeholder}
+      <input type={type} id={fieldId} name={fieldName} autoComplete={autoComplete} inputMode={inputMode} aria-label={ariaLabel} spellCheck={spellCheck} value={value} onChange={e=>onChange(e.target.value)} placeholder={placeholder}
         className={`w-full rounded-xl border border-slate-200 bg-white text-base text-slate-800 placeholder-slate-400 shadow-sm sm:text-sm
           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition
           ${prefix ? 'pl-9' : 'pl-3'} ${suffix ? 'pr-9' : 'pr-3'} py-3 sm:py-2.5`} />
@@ -80,9 +83,12 @@ function Input({ value, onChange, placeholder, className='', type='text', prefix
 }
 
 // ── Select ─────────────────────────────────────────────────────────────────
-function Select({ value, onChange, options, placeholder, className='' }) {
+function Select({ value, onChange, options, placeholder, className='', name, id, ariaLabel }) {
+  const fallbackName = normalizeText(placeholder || 'field').replace(/\s+/g, '-') || 'field';
+  const fieldId = id || fallbackName;
+  const fieldName = name || fallbackName;
   return (
-    <select value={value} onChange={e=>onChange(e.target.value)}
+    <select id={fieldId} name={fieldName} aria-label={ariaLabel} value={value} onChange={e=>onChange(e.target.value)}
       className={`w-full rounded-xl border border-slate-200 bg-white px-3 py-3 text-base text-slate-800 shadow-sm transition
         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:py-2.5 sm:text-sm ${className}`}>
       {placeholder && <option value="">{placeholder}</option>}
@@ -92,10 +98,18 @@ function Select({ value, onChange, options, placeholder, className='' }) {
 }
 
 // ── Textarea ──────────────────────────────────────────────────────────────
-function Textarea({ value, onChange, placeholder, rows = 4, className='', maxLength, error, helper }) {
+function Textarea({ value, onChange, placeholder, rows = 4, className='', maxLength, error, helper, name, id, ariaLabel, autoComplete='off', spellCheck }) {
+  const fallbackName = normalizeText(placeholder || 'field').replace(/\s+/g, '-') || 'field';
+  const fieldId = id || fallbackName;
+  const fieldName = name || fallbackName;
   return (
     <div className={className}>
       <textarea
+        id={fieldId}
+        name={fieldName}
+        autoComplete={autoComplete}
+        aria-label={ariaLabel}
+        spellCheck={spellCheck}
         value={value}
         onChange={e => onChange(e.target.value)}
         placeholder={placeholder}
@@ -340,7 +354,7 @@ function Modal({ open, onClose, title, children, size='md' }) {
         <div className="absolute inset-x-0 top-0 h-px bg-slate-200" />
         <div className="flex items-center justify-between border-b border-slate-100 px-4 py-4 sm:px-6">
           <h2 className="text-base font-semibold tracking-[-0.01em] text-slate-900">{title}</h2>
-          <button onClick={onClose} className="rounded-xl p-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600">
+          <button onClick={onClose} aria-label="Закрыть окно" title="Закрыть окно" className="rounded-xl p-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600">
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
         </div>
@@ -365,7 +379,10 @@ function Avatar({ src, name, size = 'md' }) {
 // ── StarBtn ────────────────────────────────────────────────────────────────
 function StarBtn({ active, onToggle }) {
   return (
-    <button onClick={e=>{e.stopPropagation();onToggle();}}
+    <button
+      onClick={e=>{e.stopPropagation();onToggle();}}
+      aria-label={active ? 'Убрать из избранного' : 'Добавить в избранное'}
+      title={active ? 'Убрать из избранного' : 'Добавить в избранное'}
       className={`rounded-full border p-2 transition-colors duration-150 ${active ? 'border-amber-200 bg-amber-50 text-amber-600 hover:bg-amber-100' : 'border-slate-200 bg-white text-slate-300 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-500'}`}>
       <svg className="w-4 h-4" fill={active?'currentColor':'none'} stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
@@ -402,7 +419,7 @@ function Chip({ label, onRemove }) {
     <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 ring-1 ring-slate-200">
       {label}
       {onRemove && (
-        <button onClick={onRemove} className="rounded-full p-0.5 transition hover:bg-slate-200 hover:text-slate-900">
+        <button onClick={onRemove} aria-label={`Удалить фильтр: ${label}`} title={`Удалить фильтр: ${label}`} className="rounded-full p-0.5 transition hover:bg-slate-200 hover:text-slate-900">
           <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       )}

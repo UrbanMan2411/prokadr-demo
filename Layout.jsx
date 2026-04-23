@@ -38,6 +38,39 @@ const NAV_BY_ROLE = {
   admin: NAV_ADMIN,
 };
 
+const PAGE_LABELS = {
+  employer: {
+    dashboard: 'Обзор',
+    registry: 'Реестр резюме',
+    vacancies: 'Вакансии',
+    favorites: 'Избранное',
+    messages: 'Сообщения',
+    invitations: 'Приглашения',
+    'ux-lab': 'Сценарии',
+    company: 'Профиль компании',
+  },
+  seeker: {
+    'seeker-dashboard': 'Обзор',
+    'my-resume': 'Моё резюме',
+    'seeker-invitations': 'Приглашения',
+    'seeker-messages': 'Сообщения',
+    'seeker-settings': 'Настройки',
+  },
+  admin: {
+    'admin-dashboard': 'Обзор',
+    'admin-resumes': 'Резюме',
+    'admin-employers': 'Работодатели',
+    'admin-vacancies': 'Вакансии',
+    'admin-users': 'Пользователи',
+    'admin-dicts': 'Справочники',
+    'admin-logs': 'Журнал событий',
+  },
+};
+
+function getPageLabel(role, page) {
+  return PAGE_LABELS[role]?.[page] || page;
+}
+
 function getNav(role) {
   return NAV_BY_ROLE[role] || NAV_EMPLOYER;
 }
@@ -112,7 +145,7 @@ function Header({ role, setRole, page, className = '' }) {
       <div className="min-w-0">
         <div className="text-sm text-slate-800 font-semibold tracking-[-0.02em]">ПРОкадры</div>
         <div className="mt-0.5 flex items-center gap-2 text-xs text-slate-400">
-          <span>Рабочее пространство · {page}</span>
+          <span>Рабочее пространство · {getPageLabel(role, page)}</span>
           <span className="inline-flex items-center rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 ring-1 ring-slate-200">
             Презентационный режим
           </span>
@@ -202,11 +235,17 @@ function AppShell({ role, setRole, page, setPage, children }) {
         backgroundImage: 'linear-gradient(180deg, rgba(248,250,252,1), rgba(244,246,248,1))',
       }}
     >
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-slate-900 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:shadow-lg"
+      >
+        Перейти к содержимому
+      </a>
       <Sidebar role={role} page={page} setPage={setPage}/>
       <div className="flex-1 flex min-w-0 flex-col overflow-hidden">
         <Header role={role} setRole={setRole} page={page}/>
         <MobileTopBar role={role} setRole={setRole} page={page} setPage={setPage}/>
-        <main className="flex-1 overflow-y-auto overscroll-contain">
+        <main id="main-content" className="flex-1 overflow-y-auto overscroll-contain">
           {children}
         </main>
       </div>

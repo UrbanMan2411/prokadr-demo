@@ -434,10 +434,10 @@ function EmployerVacancies({ vacancies, setVacancies }) {
                     <td className="px-4 py-3.5 text-xs text-slate-400">{fmtDate(v.createdAt)}</td>
                     <td className="px-4 py-3.5">
                       <div className="flex justify-end gap-1.5">
-                        <Btn size="xs" variant="ghost" onClick={()=>{setEditing(v);setModalOpen(true);}}>
+                        <Btn size="xs" variant="ghost" ariaLabel={`Редактировать вакансию ${v.title}`} title={`Редактировать вакансию ${v.title}`} onClick={()=>{setEditing(v);setModalOpen(true);}}>
                           <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
                         </Btn>
-                        <Btn size="xs" variant="ghost" onClick={()=>setVacancies(prev=>prev.map(vv=>vv.id===v.id?{...vv,status:'archived'}:vv))}>
+                        <Btn size="xs" variant="ghost" ariaLabel={`Архивировать вакансию ${v.title}`} title={`Архивировать вакансию ${v.title}`} onClick={()=>setVacancies(prev=>prev.map(vv=>vv.id===v.id?{...vv,status:'archived'}:vv))}>
                           <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
                         </Btn>
                       </div>
