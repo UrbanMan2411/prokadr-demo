@@ -12,11 +12,16 @@ function EmployerPageHero({ eyebrow, title, description, badges = [], actions, a
       </div>
       <div className="relative grid gap-5 px-4 py-4 sm:px-6 sm:py-6 xl:grid-cols-[1.14fr_0.86fr]">
         <div className="max-w-3xl">
-          <div className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500">
-            {eyebrow}
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-500">
+              {eyebrow}
+            </div>
+            <div className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-blue-700 ring-1 ring-blue-100">
+              Демо без регистрации
+            </div>
           </div>
           <div className="mt-4 h-1 w-16 rounded-full bg-gradient-to-r from-blue-600 via-cyan-500 to-amber-400" />
-          <h1 className="mt-4 text-[30px] font-semibold leading-tight tracking-[-0.04em] text-slate-900 sm:text-[34px]">
+          <h1 className="mt-4 max-w-2xl text-[30px] font-semibold leading-tight tracking-[-0.04em] text-slate-900 sm:text-[34px]">
             {title}
           </h1>
           <p className="mt-3 max-w-2xl text-[15px] leading-7 text-slate-600">

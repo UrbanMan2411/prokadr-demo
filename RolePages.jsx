@@ -21,13 +21,22 @@ function ColumnSurface({ title, description, children, action }) {
 
 function WorkspaceHero({ eyebrow, title, description, badges = [], aside }) {
   return (
-    <Surface className="mb-5 overflow-hidden">
+    <Surface className="mb-5 overflow-hidden bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.94))]">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -right-20 top-0 h-48 w-48 rounded-full bg-blue-200/20 blur-3xl" />
+        <div className="absolute -left-16 bottom-0 h-44 w-44 rounded-full bg-cyan-200/20 blur-3xl" />
+      </div>
       <div className="grid gap-4 px-4 py-4 sm:px-6 sm:py-6 xl:grid-cols-[1.15fr_0.85fr]">
-        <div>
-          <div className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">
-            {eyebrow}
+        <div className="relative">
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">
+              {eyebrow}
+            </div>
+            <div className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-blue-700 ring-1 ring-blue-100">
+              Публичная демо-версия
+            </div>
           </div>
-          <h1 className="mt-4 text-[26px] font-semibold tracking-[-0.03em] text-slate-900 sm:text-[28px]">{title}</h1>
+          <h1 className="mt-4 max-w-2xl text-[26px] font-semibold tracking-[-0.03em] text-slate-900 sm:text-[28px]">{title}</h1>
           <p className="mt-3 max-w-2xl text-[15px] leading-6 text-slate-600">{description}</p>
           {badges.length > 0 && (
             <div className="mt-5 flex flex-wrap gap-2">
@@ -35,7 +44,7 @@ function WorkspaceHero({ eyebrow, title, description, badges = [], aside }) {
             </div>
           )}
         </div>
-        <div className="rounded-[20px] border border-slate-200 bg-slate-50 p-4 shadow-sm sm:p-5">
+        <div className="relative rounded-[20px] border border-slate-200 bg-slate-50 p-4 shadow-sm sm:p-5">
           {aside}
         </div>
       </div>
@@ -61,8 +70,8 @@ function QuietListCard({ eyebrow, title, subtitle, meta, right }) {
 
 function PanelEmptyState({ icon = '—', title, description }) {
   return (
-    <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50/80 px-4 py-8 text-center">
-      <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-xl bg-white text-sm font-semibold text-slate-500 ring-1 ring-slate-200">
+    <div className="rounded-[22px] border border-dashed border-slate-200 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.98),rgba(248,250,252,0.82))] px-4 py-8 text-center shadow-[0_10px_24px_rgba(15,23,42,0.04)]">
+      <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-xl bg-white text-sm font-semibold text-slate-500 ring-1 ring-slate-200 shadow-sm">
         {icon}
       </div>
       <div className="mt-3 text-sm font-semibold text-slate-900">{title}</div>

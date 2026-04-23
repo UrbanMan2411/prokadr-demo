@@ -252,8 +252,13 @@ function ResumeRegistry({ resumes, setResumes, vacancies, onOpenResume, onInvite
         </div>
         <div className="relative grid gap-4 px-4 py-4 sm:px-5 sm:py-5 lg:grid-cols-[1.08fr_0.92fr]">
           <div>
-            <div className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-200">
-              Реестр работодателя
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-200">
+                Реестр работодателя
+              </div>
+              <div className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-cyan-100 ring-1 ring-white/10">
+                Публичная демо-версия
+              </div>
             </div>
             <div className="mt-3 text-xl font-semibold tracking-[-0.03em] text-white">Быстрый отбор кандидатов без лишних переходов</div>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300">

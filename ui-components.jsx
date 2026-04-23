@@ -440,13 +440,17 @@ function StatCard({ label, value, icon, color='blue', sub }) {
 // ── Empty State ────────────────────────────────────────────────────────────
 function EmptyState({ icon='📄', title, description, action }) {
   return (
-    <div className="flex flex-col items-center justify-center rounded-[24px] border border-dashed border-slate-200 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.95),rgba(248,250,252,0.78))] px-5 py-12 text-center sm:px-8 sm:py-16">
-      <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-[20px] bg-white text-3xl text-slate-500 shadow-sm ring-1 ring-slate-200">
+    <div className="relative overflow-hidden rounded-[26px] border border-dashed border-slate-200 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.98),rgba(248,250,252,0.82))] px-5 py-12 text-center shadow-[0_12px_30px_rgba(15,23,42,0.04)] sm:px-8 sm:py-16">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -right-12 top-0 h-32 w-32 rounded-full bg-blue-100/40 blur-3xl" />
+        <div className="absolute -left-10 bottom-0 h-28 w-28 rounded-full bg-cyan-100/40 blur-3xl" />
+      </div>
+      <div className="relative mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-[22px] bg-white text-3xl text-slate-500 shadow-[0_10px_24px_rgba(15,23,42,0.08)] ring-1 ring-slate-200">
         {icon}
       </div>
-      <div className="mb-2 text-base font-semibold tracking-[-0.02em] text-slate-900">{title}</div>
-      {description && <div className="mb-5 max-w-sm text-sm leading-relaxed text-slate-500">{description}</div>}
-      {action && <div className="inline-flex">{action}</div>}
+      <div className="relative mb-2 text-base font-semibold tracking-[-0.02em] text-slate-900">{title}</div>
+      {description && <div className="relative mb-5 max-w-sm text-sm leading-relaxed text-slate-500">{description}</div>}
+      {action && <div className="relative inline-flex">{action}</div>}
     </div>
   );
 }
@@ -454,17 +458,20 @@ function EmptyState({ icon='📄', title, description, action }) {
 // ── Loading State ─────────────────────────────────────────────────────────
 function LoadingState({ title = 'Загрузка данных', rows = 4, compact = false }) {
   return (
-    <div className={`rounded-[20px] border border-slate-200 bg-white ${compact ? 'p-4' : 'p-4 sm:p-6'} shadow-sm`}>
+    <div className={`overflow-hidden rounded-[22px] border border-slate-200 bg-white ${compact ? 'p-4' : 'p-4 sm:p-6'} shadow-[0_12px_30px_rgba(15,23,42,0.05)]`}>
       <div className="mb-5 flex items-center justify-between gap-3">
-        <div>
-          <div className="h-4 w-40 rounded-full bg-slate-200 animate-pulse" />
-          <div className="mt-2 h-3 w-64 rounded-full bg-slate-100 animate-pulse" />
+        <div className="min-w-0">
+          <div className="mb-2 inline-flex rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+            {title}
+          </div>
+          <div className="h-4 w-44 rounded-full bg-slate-200 animate-pulse" />
+          <div className="mt-2 h-3 w-72 max-w-full rounded-full bg-slate-100 animate-pulse" />
         </div>
-        <div className="h-9 w-20 rounded-full bg-slate-100 animate-pulse" />
+        <div className="h-9 w-24 rounded-full bg-slate-100 animate-pulse" />
       </div>
       <div className="space-y-3">
         {Array.from({ length: rows }).map((_, index) => (
-          <div key={index} className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-slate-50/60 p-3">
+          <div key={index} className="flex items-center gap-3 rounded-2xl border border-slate-100 bg-[linear-gradient(180deg,rgba(248,250,252,0.9),rgba(255,255,255,0.92))] p-3">
             <div className="h-10 w-10 rounded-full bg-slate-200 animate-pulse" />
             <div className="flex-1 space-y-2">
               <div className="h-3 w-3/4 rounded-full bg-slate-200 animate-pulse" />
@@ -481,7 +488,7 @@ function LoadingState({ title = 'Загрузка данных', rows = 4, compa
 // ── Error State ───────────────────────────────────────────────────────────
 function ErrorState({ title = 'Не удалось загрузить данные', description = 'Попробуйте обновить страницу или повторить позже.', action }) {
   return (
-    <div className="rounded-[20px] border border-red-200 bg-[linear-gradient(180deg,rgba(255,247,247,0.98),rgba(254,242,242,0.9))] p-6 text-center">
+    <div className="rounded-[22px] border border-red-200 bg-[linear-gradient(180deg,rgba(255,248,248,0.98),rgba(254,242,242,0.88))] p-6 text-center shadow-[0_12px_30px_rgba(127,29,29,0.06)]">
       <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-[18px] bg-white text-red-500 ring-1 ring-red-200 shadow-sm">
         !
       </div>

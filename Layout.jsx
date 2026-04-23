@@ -55,6 +55,7 @@ function Sidebar({ role, page, setPage, className = '' }) {
   return (
     <aside className={`relative hidden h-screen w-72 flex-shrink-0 flex-col overflow-y-auto border-r border-slate-200 bg-white/95 shadow-[8px_0_24px_rgba(15,23,42,0.04)] sticky top-0 md:flex ${className}`}>
       <div className="pointer-events-none absolute inset-y-0 right-0 w-px bg-slate-200" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-600 via-cyan-500 to-amber-400" />
       {/* Logo */}
       <div className="border-b border-slate-100 px-5 py-5">
         <div className="flex items-center gap-2.5">
@@ -67,6 +68,14 @@ function Sidebar({ role, page, setPage, className = '' }) {
             <div className="text-sm font-bold leading-tight tracking-[-0.02em] text-slate-900">ПРОкадры</div>
             <div className="text-[11px] leading-tight text-slate-500">ЗаказРФ · рабочее пространство подбора</div>
           </div>
+        </div>
+        <div className="mt-3 flex items-center gap-2">
+          <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-blue-700 ring-1 ring-blue-100">
+            Демо без регистрации
+          </span>
+          <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 ring-1 ring-slate-200">
+            Готово к показу
+          </span>
         </div>
       </div>
 
@@ -88,7 +97,7 @@ function Sidebar({ role, page, setPage, className = '' }) {
       <div className="border-t border-slate-100 px-4 py-4">
         <div className="rounded-2xl border border-slate-200/80 bg-white/80 px-3.5 py-3 text-xs text-slate-500 shadow-sm backdrop-blur">
           <div className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-700 ring-1 ring-emerald-100">Готово к показу</div>
-          <div className="mt-2 text-[11px] leading-relaxed">Демо-данные · RBAC · модульные страницы</div>
+          <div className="mt-2 text-[11px] leading-relaxed">Демо-данные · RBAC · модульные страницы · public preview</div>
         </div>
       </div>
     </aside>
@@ -102,7 +111,12 @@ function Header({ role, setRole, page, className = '' }) {
     <header className={`sticky top-0 z-30 hidden h-16 items-center justify-between border-b border-slate-200 bg-white/92 px-6 backdrop-blur-md shadow-[0_8px_24px_rgba(15,23,42,0.03)] md:flex ${className}`}>
       <div className="min-w-0">
         <div className="text-sm text-slate-800 font-semibold tracking-[-0.02em]">ПРОкадры</div>
-        <div className="mt-0.5 text-xs text-slate-400">Рабочее пространство · {page}</div>
+        <div className="mt-0.5 flex items-center gap-2 text-xs text-slate-400">
+          <span>Рабочее пространство · {page}</span>
+          <span className="inline-flex items-center rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 ring-1 ring-slate-200">
+            Презентационный режим
+          </span>
+        </div>
       </div>
       <div className="flex items-center gap-3">
         <span className="text-xs text-slate-500">Роль:</span>
@@ -146,6 +160,14 @@ function MobileTopBar({ role, setRole, page, setPage }) {
               {roleTitles[r]}
             </button>
           ))}
+        </div>
+        <div className="mt-2 flex items-center gap-2 overflow-x-auto whitespace-nowrap px-0 pb-0.5">
+          <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-blue-700 ring-1 ring-blue-100">
+            Демо без регистрации
+          </span>
+          <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500 ring-1 ring-slate-200">
+            Готово к показу
+          </span>
         </div>
         <div className="mt-3 -mx-4 overflow-x-auto px-4 pb-1">
           <div className="flex gap-2 whitespace-nowrap">
